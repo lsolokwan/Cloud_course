@@ -1,0 +1,9 @@
+# Define the parent image
+FROM debian:stretch
+
+# Install required packages
+RUN apt-get update && \
+    apt-get -y install bash netcat
+
+# Command that will be executed on startup
+CMD while [ true ]; do nc server-host 8088; sleep 1; done

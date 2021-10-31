@@ -1,0 +1,12 @@
+# Define the parent image
+FROM debian:stretch
+
+# Install required packages
+RUN apt-get update && \
+    apt-get -y install bash fortune netcat
+
+# Command that will be executed on startup
+CMD while [ true ]; do /usr/games/fortune | nc -l -p 8088 -q 1; done
+
+# Tells the user that a port is being listened to ( here 8088 ) Optional
+EXPOSE 8088
